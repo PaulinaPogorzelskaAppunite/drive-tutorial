@@ -11,11 +11,11 @@
 
 Just finished connecting to SingleStore DB. Next steps:
 
-- [ ] Update schema to show files and folders
+- [X] Update schema to show files and folders
 - [ ] Manually insert examples
 - [ ] Render them in UI
 - [ ] Push to make sure it all works
 
-## Note 25-02-2025 52:55
+## Note 25-02-2025 1:01 (done) / 1:07 (watched)
 
 
