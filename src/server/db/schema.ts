@@ -1,3 +1,5 @@
+import "server-only"
+
 import {
   int,
   text,
@@ -7,7 +9,7 @@ import {
 } from "drizzle-orm/singlestore-core";
 
 export const createTable = singlestoreTableCreator(
-  (name) => `drive_tutorial_${name}`,
+  (name) => `drive-tutorial_${name}`,
 );
 
 export const files = createTable(
@@ -18,7 +20,7 @@ export const files = createTable(
     .autoincrement(),
     name: text("name").notNull(),
     size: int("size").notNull(),
-    type: text("url").notNull(),
+    url: text("url").notNull(),
     parent: bigint("parent", { mode: "number", unsigned: true }).notNull(),
   },
   (t) => {
@@ -26,7 +28,7 @@ export const files = createTable(
   },
 );
 
-export const folder = createTable(
+export const folders = createTable(
   "folders_table",
   {
     id: bigint("id", { mode: "number", unsigned: true })

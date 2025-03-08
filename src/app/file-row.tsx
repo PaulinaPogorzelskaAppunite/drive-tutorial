@@ -1,7 +1,7 @@
-import type { Folder as FolderType, File as FileType } from "../lib/mock-data";
+import type { files, folders } from "~/server/db/schema";
 import { Folder, FileIcon } from "lucide-react";
 
-export function FileRow({ file }: { file: FileType }) {
+export function FileRow({ file }: { file: typeof files.$inferSelect }) {
   return (
     <li
       key={file.id}
@@ -10,7 +10,7 @@ export function FileRow({ file }: { file: FileType }) {
       <div className="grid grid-cols-12 items-center gap-4">
         <div className="col-span-6 flex items-center">
           <a
-            href={file.url ?? "#"}
+            href={file.url}
             className="flex items-center text-gray-100 hover:text-blue-400"
             target="_blank"
           >
@@ -29,7 +29,7 @@ export function FolderRow({
   folder,
   handleFolderClick,
 }: {
-  folder: FolderType;
+  folder: typeof folders.$inferSelect
   handleFolderClick: () => void;
 }) {
   return (

@@ -18,4 +18,6 @@ Just finished connecting to SingleStore DB. Next steps:
 
 ## Note 25-02-2025 1:01 (done) / 1:07 (watched)
 
+## Note 26-02-2025 1:08 
+
 
