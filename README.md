@@ -20,3 +20,7 @@
 - [ ] Change folders to link components, remove all client state
 - [ ] Clean up database and data fetching patters
 - [ ] Real homepage
+
+## Note 08-03-2025 1:47:13 - cmd + D to select all of the same name 
+
+## Note 08-03-2025 1:48:00 

@@ -12,7 +12,7 @@ export default function DriveContents(props: {
   folders: (typeof folders_table.$inferSelect)[];
   parents: (typeof folders_table.$inferSelect)[];
 }) {
-  console.log("HERE", props)
+
 
   const handleUpload = () => {
     alert("Upload functionality would be implemented here")
