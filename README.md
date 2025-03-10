@@ -17,8 +17,8 @@
 
 ## Note 08-03-2025 1:20:43 - CHECK FILM THAT HE MENTIONED THERE !!! 
 
-- [ ] Change folders to link components, remove all client state
-- [ ] Clean up database and data fetching patters
+- [x] Change folders to link components, remove all client state
+- [x] Clean up database and data fetching patters
 - [ ] Real homepage
 
 ## Note 08-03-2025 1:47:13 - cmd + D to select all of the same name 
