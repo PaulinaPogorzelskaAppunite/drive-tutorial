@@ -1,7 +1,7 @@
 import { db } from "~/server/db";
-import { mockFolders, mockFiles } from "~/lib/mock-data";
-import { files_table, folders_table } from "~/server/db/schema";
-
+import { mockFolders } from "~/lib/mock-data";
+import {  folders_table } from "~/server/db/schema";
+import { auth } from "@clerk/nextjs/server";
 export default function Sandbox() {
   return (
     <div className="flex flex-col gap-4">
@@ -10,25 +10,31 @@ export default function Sandbox() {
           "use server";
           console.log("submitted");
 
-         const folderInsert = await db
-            .insert(folders_table)
-            .values(
-              mockFolders.map((folder, index) => ({
-                id: index + 1,
-                name: folder.name,
-                parent: index !== 0 ? 1 : null,
-              })),
-            );
-          const fileInsert = await db.insert(files_table).values(mockFiles.map((file, index) => ({ 
-            id: index + 1,
-            name: file.name,
-            size: 5000,
-            url: file.url,
-            parent: (index % 3) + 1,
-          })));
+          const user = await auth();
+          if (!user.userId) {
+            throw new Error("User not found");
+          }
 
-          console.log("folderInsert", folderInsert);
-          console.log("fileInsert", fileInsert);
+       
+          const rootFolder = await db
+            .insert(folders_table)
+            .values({
+              name: "root",
+              ownerId: user.userId,
+              parent: null,
+            })
+            .$returningId();
+
+          const insertableFolders = mockFolders.map((folder) => ({
+            name: folder.name,
+            ownerId: user.userId,
+            parent: rootFolder[0]!.id,
+          }));
+
+          console.log("rootFolder", rootFolder);
+          console.log("insertableFolders", insertableFolders);
+
+          await db.insert(folders_table).values(insertableFolders);
         }}
       >
         <button type="submit">Submit</button>
