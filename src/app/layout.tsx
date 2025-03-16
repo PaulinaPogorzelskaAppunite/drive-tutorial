@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 import {
   ClerkProvider
 } from '@clerk/nextjs'
+import { PostHogProvider } from './_providers/posthog-provider'
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
@@ -16,10 +17,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider>
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <ClerkProvider>
+          <PostHogProvider>
+            {children}
+          </PostHogProvider>
+        </ClerkProvider>
+      </body>
     </html>
-    </ClerkProvider>
   );
 }
